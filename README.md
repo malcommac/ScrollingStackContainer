@@ -17,16 +17,24 @@ UITableView and UICollectionView are great when you need to display a number of 
 These view controller may contains simple fixed-height `UIView` or complex `UICollectionView`/`UITableView`; in these cases you need to be careful because expading your scrollviews will destroy internal iOS caching mechanism.
 `ScrollingStackContainer` allows you to stack view controllers easily without any worry; it manages view controllers with scrolling collections automatically in order to reduce the amount of memory usage.
 
-And it's very simple to implement:
+## How to use it
 
-For fixed height view you should set a valid `height` (grater than zero). This can be done in the following ways:
+It's very simple to implement: for **fixed height views** you should set a valid `height` (grater than zero). This can be done in your `UIViewController`'s subclass in one of the following ways:
 
-set an height constraint on `UIViewController`’s .view
+* set an height constraint on `UIViewController`’s .view
 * … or return a value into `preferredContentSize()` function
 * … or set the height via `self.frame`
 * … or by implementing the `StackContainable` protocol and returning `.view(height: <height>)` with a valid value.
 
-For `UIViewController` which contains inner’s scroll views (table or collections) you need to implement the `StackContainble` protocol by returning `.scroll(<inner scroll instance>, <insets of the inner scroll in superview>)`.
+For view controllers which **contains inner’s scroll views** (for example table or collections) you need to implement the `StackContainble` protocol by returning `.scroll(<inner scroll instance>, <insets of the inner scroll in superview>)`.
+
+After that you should simply set the `viewControllers` property of your `ScrollingStackContainer` subclass:
+
+```swift
+	// view controller's view are stacked vertically in order
+	self.viewControllers = [controller_2,controller_1,controller_3]
+```
+
 That’s all! All the business logic is managed by the class and you can enjoy!
 
 See the example in this repository to get a live preview!
