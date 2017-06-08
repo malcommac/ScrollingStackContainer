@@ -1,5 +1,3 @@
-//
-//  FontNames.swift
 //  ScrollingStackController
 //  Efficient Scrolling Container for UIViewControllers
 //
