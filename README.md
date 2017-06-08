@@ -111,9 +111,8 @@ Run `carthage` to build the framework and drag the built `ScrollingStackContaine
 
 Current version is compatible with:
 
-* Swift 3.1
+* Swift 3.1+
 * iOS 8 or later
-* ...and virtually any platform which is compatible with Swift 3 and implements the Swift Foundation Library
 
 
 ## Credits & License
