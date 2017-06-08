@@ -61,8 +61,17 @@ extension UIView {
 	
 }
 
+/// We cannot add an extension to UIViewController and allows to override the
+/// default implementation in UIViewController subclasses. So be sure to
+/// use StackContainable only for UIViewController until a new Swift version
+/// allows these stuff.
 public protocol StackContainable: class {
 	
+	/// You should implement it in your UIViewController subclass in order
+	/// to specify how it must appear when contained in a ScrollingStackContainer.
+	/// Default implementation is specified below.
+	///
+	/// - Returns: appearance
 	func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance
 	
 }
