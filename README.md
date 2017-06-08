@@ -7,10 +7,29 @@
 <p align="center" >★★ <b>Star our github repository to help us!</b> ★★</p>
 <p align="center" >Created by <a href="http://www.danielemargutti.com">Daniele Margutti</a> (<a href="http://www.twitter.com/danielemargutti">@danielemargutti</a>)</p>
 
-ScrollingStackContainer is an efficient scrolling UIStackView replacement, more suitable in situations when you are building a scrolling container with an heterogeneous number of items.
+`ScrollingStackContainer` is an efficient scrolling `UIStackView` replacement, more suitable in situations when you are building a scrolling container with an heterogeneous number of items.
 It allows you to stack vertically `UIViewController` instances where the view is a simple fixed-height `UIView` or a `UICollectionView` or `UITableView`.
 
 ## Motivation
+A full article about the motivation behind this class is available on Medium (or in my personal blog). Check it here for full details about how the class works.
+
+UITableView and UICollectionView are great when you need to display a number of relatively simple cells; when your layout became complex you may need to create different UIViewController which manages each different kind layout.
+These view controller may contains simple fixed-height `UIView` or complex `UICollectionView`/`UITableView`; in these cases you need to be careful because expading your scrollviews will destroy internal iOS caching mechanism.
+`ScrollingStackContainer` allows you to stack view controllers easily without any worry; it manages view controllers with scrolling collections automatically in order to reduce the amount of memory usage.
+
+And it's very simple to implement:
+
+For fixed height view you should set a valid `height` (grater than zero). This can be done in the following ways:
+
+set an height constraint on `UIViewController`’s .view
+* … or return a value into `preferredContentSize()` function
+* … or set the height via `self.frame`
+* … or by implementing the `StackContainable` protocol and returning `.view(height: <height>)` with a valid value.
+
+For `UIViewController` which contains inner’s scroll views (table or collections) you need to implement the `StackContainble` protocol by returning `.scroll(<inner scroll instance>, <insets of the inner scroll in superview>)`.
+That’s all! All the business logic is managed by the class and you can enjoy!
+
+See the example in this repository to get a live preview!
 
 ## You also may like
 
@@ -27,11 +46,11 @@ Take a look here:
 
 ## Installation
 
-ScrollingStackContainer supports multiple methods for installing the library in a project.
+`ScrollingStackContainer` supports multiple methods for installing the library in a project.
 
 ## Installation with CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like ScrollingStackContainer in your projects. You can install it with the following command:
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like `ScrollingStackContainer` in your projects. You can install it with the following command:
 
 ```bash
 $ gem install cocoapods
