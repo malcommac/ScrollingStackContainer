@@ -117,7 +117,7 @@ Current version is compatible with:
 
 
 ## Credits & License
-ScrollingStackContainer is owned and maintained by [Daniele Margutti](http://www.danielemargutti.com/) along with main contributions of [Jeroen Houtzager](https://github.com/Hout).
+ScrollingStackContainer is owned and maintained by [Daniele Margutti](http://www.danielemargutti.com/).
 
 As open source creation any help is welcome!
 
