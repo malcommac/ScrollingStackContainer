@@ -39,6 +39,10 @@ That’s all! All the business logic is managed by the class and you can enjoy!
 
 See the example in this repository to get a live preview!
 
+The following example is a vertical stack which contains a fixed height view controller, a view controller with a table inside and another fixed height controller.
+
+![ScrollingStackContainer](https://raw.githubusercontent.com/malcommac/ScrollingStackContainer/develop/example.gif)
+
 ## You also may like
 
 Do you like `ScrollingStackContainer`? I'm also working on several other opensource libraries.
