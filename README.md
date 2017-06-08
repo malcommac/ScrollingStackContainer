@@ -113,9 +113,6 @@ Current version is compatible with:
 
 * Swift 3.1
 * iOS 8 or later
-* macOS 10.10 or later
-* watchOS 2.0 or later
-* tvOS 9.0 or later
 * ...and virtually any platform which is compatible with Swift 3 and implements the Swift Foundation Library
 
 
