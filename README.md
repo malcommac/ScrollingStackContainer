@@ -11,7 +11,7 @@
 It allows you to stack vertically `UIViewController` instances where the view is a simple fixed-height `UIView` or a `UICollectionView` or `UITableView`.
 
 ## Motivation
-A full article about the motivation behind this class is available on Medium (or in my personal blog). Check it here for full details about how the class works.
+A full article about the motivation behind this class [is available on Medium](https://medium.com/@danielemargutti/efficient-scrolling-uistackview-in-swift-99f3d75fb12e) (or in my [personal blog](http://danielemargutti.com/2017/06/09/efficient-scrolling-uistackview-in-swift/)). Check it here for full details about how the class works.
 
 UITableView and UICollectionView are great when you need to display a number of relatively simple cells; when your layout became complex you may need to create different UIViewController which manages each different kind layout.
 These view controller may contains simple fixed-height `UIView` or complex `UICollectionView`/`UITableView`; in these cases you need to be careful because expading your scrollviews will destroy internal iOS caching mechanism.
