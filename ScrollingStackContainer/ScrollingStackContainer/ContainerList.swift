@@ -90,6 +90,6 @@ public class ContainerList: UIViewController, StackContainable, UITableViewDataS
 	
 	public func preferredAppearanceInStack() -> ScrollingStackController.ItemAppearance {
 		let _ = self.view // force load of the view
-		return .scroll(self.tableView!, insets: UIEdgeInsetsMake(50, 0, 50, 0))
+        return .scroll(self.tableView!, insets: UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0))
 	}
 }

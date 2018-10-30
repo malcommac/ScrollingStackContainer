@@ -192,10 +192,11 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
     
     /// Return the visible portion of the scrolling stack scroll view
     private var visibleRect: CGRect {
+        guard let scrollView = scrollView else { return .zero }
         return CGRect(x: 0.0,
-                      y: scrollView!.contentOffset.y,
-                      width: scrollView!.frame.size.width,
-                      height: scrollView!.frame.size.height)
+                      y: scrollView.contentOffset.y,
+                      width: scrollView.frame.size.width,
+                      height: scrollView.frame.size.height)
         
     }
     
@@ -278,7 +279,7 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
                     // No cells are rendered until the item became partially visible
                     innerScroll.frame = CGRect.zero
                 } else {
-                    // The item is partially visible
+                    // The item is at least partially visible
                     if mainOffsetY > (itemRect.minY + insets.bottom) {
                         // If during scrolling the inner table/collection has reached the top
                         // of the parent scrollview it will be pinned on top
@@ -291,13 +292,13 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
                         let visibleInnerHeight = innerScroll.contentSize.height - innerScrollOffsetY
                         
                         var innerScrollRect = CGRect.zero
-                        innerScrollRect.origin = CGPoint(x: 0, y: innerScrollOffsetY + insets.top)
+                        innerScrollRect.origin = CGPoint(x: insets.left, y: innerScrollOffsetY + insets.top)
                         if visibleInnerHeight < visibleRect.size.height {
                             // partially visible when pinned on top
-                            innerScrollRect.size = CGSize(width: w, height: min(visibleInnerHeight, itemVisibleRect.height))
+                            innerScrollRect.size = CGSize(width: w - (insets.left + insets.right), height: min(visibleInnerHeight, itemVisibleRect.height))
                         } else {
                             // the inner scroll occupy the entire parent scroll's height
-                            innerScrollRect.size = itemVisibleRect.size
+                            innerScrollRect.size = CGSize(width: itemVisibleRect.size.width - (insets.left + insets.right), height: itemVisibleRect.height - insets.top)
                         }
                         innerScroll.frame = innerScrollRect
                         // adjust the offset to simulate the scroll
@@ -305,10 +306,10 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
                     } else {
                         // The inner scroll view is partially visible
                         // Adjust the frame as it needs (at its max it reaches the height of the parent)
-                        let offsetOfInnerY = (itemRect.minY + insets.top) - mainOffsetY
-                        let visibileHeight = visibleRect.size.height - offsetOfInnerY
+                        let offsetOfInnerY = (itemRect.minY + insets.top + insets.bottom) - mainOffsetY
+                        let visibleHeight = visibleRect.size.height - offsetOfInnerY
                         
-                        innerScroll.frame = CGRect(x: 0, y: insets.top, width: w, height: visibileHeight)
+                        innerScroll.frame = CGRect(x: insets.left, y: insets.top, width: w - (insets.left + insets.right), height: visibleHeight)
                         innerScroll.contentOffset = CGPoint.zero
                     }
                 }
