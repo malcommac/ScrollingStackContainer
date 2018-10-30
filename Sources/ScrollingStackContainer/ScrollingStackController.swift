@@ -113,7 +113,7 @@ extension StackContainable where Self: UIViewController {
     }
 }
 
-public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
+open class ScrollingStackController: UIViewController, UIScrollViewDelegate {
     
     /// This define the behaviour stack needs to keep for a specified controller
     ///
