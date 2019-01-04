@@ -203,8 +203,9 @@ open class ScrollingStackController: UIViewController, UIScrollViewDelegate {
     /// This function is used to calculate the rect of each item into the stack
     /// and put it in place. It's called when a new array of items is set.
     public func relayoutItems() {
+        guard let scrollView = self.scrollView else { return }
         var offset_y: CGFloat = 0.0
-        let width = self.scrollView!.frame.size.width
+        let width = scrollView.frame.size.width
         
         for item in self.items {
             var itemHeight: CGFloat = 0.0
@@ -226,14 +227,15 @@ open class ScrollingStackController: UIViewController, UIScrollViewDelegate {
             item.value?.view.frame = item.rect // don't worry, its adjusted below
             // add the view in place
             if let controller = item.value {
-                self.scrollView!.addSubview(controller.view)
+                scrollView.addSubview(controller.view)
                 offset_y += itemHeight // calculate the new offset
             }
         }
         // Setup manyally the content size and adjust the items based upon the visibility
-        self.scrollView!.contentSize = CGSize(width: width, height: offset_y)
+        scrollView.contentSize = CGSize(width: width, height: offset_y)
         self.adjustContentOnScroll()
     }
+
     
     
     /// This function is used to adjust the frame of the object as the parent
@@ -250,7 +252,7 @@ open class ScrollingStackController: UIViewController, UIScrollViewDelegate {
     ///   of the parent, and when partially visible, only the visible region.
     ////  In this way we can maximize the memory usage by using table/collection's caching architecture.
     private func adjustContentOnScroll() {
-        let scrollView = self.scrollView!
+        guard let scrollView = self.scrollView else { return }
         let contentOffset = scrollView.contentOffset
         
         // This is the visible rect of the parent scroll view
@@ -306,7 +308,7 @@ open class ScrollingStackController: UIViewController, UIScrollViewDelegate {
                     } else {
                         // The inner scroll view is partially visible
                         // Adjust the frame as it needs (at its max it reaches the height of the parent)
-                        let offsetOfInnerY = (itemRect.minY + insets.top + insets.bottom) - mainOffsetY
+                        let offsetOfInnerY = (itemRect.minY + insets.top) - mainOffsetY
                         let visibleHeight = visibleRect.size.height - offsetOfInnerY
                         
                         innerScroll.frame = CGRect(x: insets.left, y: insets.top, width: w - (insets.left + insets.right), height: visibleHeight)
