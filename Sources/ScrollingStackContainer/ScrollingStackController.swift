@@ -141,6 +141,9 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
 			self.removeAllViewControllers()
 			self.items = newValue.map { StackItem($0 as! UIViewController, $0.preferredAppearanceInStack() ) }
 			self.relayoutItems()
+            self.items.forEach {
+                self.addChild($0.controller)
+            }
 		}
 		get { return self.items.map { $0.controller as! StackContainable } }
 	}
