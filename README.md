@@ -7,6 +7,8 @@
 <p align="center" >★★ <b>Star our github repository to help us!</b> ★★</p>
 <p align="center" >Created by <a href="http://www.danielemargutti.com">Daniele Margutti</a> (<a href="http://www.twitter.com/danielemargutti">@danielemargutti</a>)</p>
 
+### ⚠️ THE FOLLOWING LIBRARY WAS ARCHIVED. YOU CAN USE [ScrollStackController](https://github.com/malcommac/ScrollStackController)
+
 `ScrollingStackContainer` is an efficient scrolling `UIStackView` replacement, more suitable in situations when you are building a scrolling container with an heterogeneous number of items.
 It allows you to stack vertically `UIViewController` instances where the view is a simple fixed-height `UIView` or a `UICollectionView` or `UITableView`.
 
