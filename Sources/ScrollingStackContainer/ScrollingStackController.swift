@@ -107,7 +107,7 @@ extension StackContainable where Self: UIViewController {
 	}
 }
 
-public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
+open class ScrollingStackController: UIViewController, UIScrollViewDelegate {
 	
 	/// This define the behaviour stack needs to keep for a specified controller
 	///
@@ -122,7 +122,7 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
 	/// This is the parent scroll view. Be sure to connect it to a valid object
 	@IBOutlet public var scrollView: UIScrollView?
 	
-	public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		guard let scroll = self.scrollView else { // you must to create a valid scroll view
 			fatalError("You must connect a valid scroll view to the view controller")
@@ -162,7 +162,7 @@ public class ScrollingStackController: UIViewController, UIScrollViewDelegate {
 	}
 	
 	/// Adjust layout as the parent view's change
-	public override func viewDidLayoutSubviews() {
+	open override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		self.relayoutItems()
 	}
